@@ -14,7 +14,7 @@ export default function JournalList({ journalData }: JournalListProp) {
   }
   const analyzeJournal = async (journalId: string, text: string) => {
     setAnalyzing(journalId)
-    const data = await fetch(
+    await fetch(
       `${API_URL}/api/journal/anaylze/${journalId}`,
       {
         method: "POST",
