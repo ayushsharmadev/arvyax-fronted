@@ -18,7 +18,6 @@ function Insights({ userId }: { userId: string }) {
   }, [userId]);
 
   if (!data) return <div>Loading insights...</div>;
-  console.log("insights ", data);
   return (
     <div className="border p-2 my-4">
       <h3>Insights</h3>
