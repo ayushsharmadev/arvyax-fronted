@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import JournalForm from "./components/journal-form";
 import config from "./config";
 import JournalList from "./components/journal-list";
+import Insights from "./components/journal-insights";
 
 export interface JournalEntry {
   id: string;
@@ -14,9 +15,9 @@ export interface JournalEntry {
 function App() {
   const [entries, setEntries] = useState<JournalEntry[]>([]);
 
-  const onEntryCreated = (entry:JournalEntry) => {
-    setEntries([...entries, entry])
-  }
+  const onEntryCreated = (entry: JournalEntry) => {
+    setEntries([...entries, entry]);
+  };
   function getUserId() {
     let userId = localStorage.getItem("userId");
 
@@ -43,6 +44,7 @@ function App() {
       <div className="mx-auto lg:max-w-5xl md:max-w-3xl ">
         <h1 className="font-bold text-3xl mt-4">AI-Assisted Journal</h1>
         <JournalForm userId={userId} onEntryCreated={onEntryCreated} />
+        <Insights userId={userId} />
         <JournalList journalData={entries} />
       </div>
     </div>

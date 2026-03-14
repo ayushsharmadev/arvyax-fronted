@@ -1,16 +1,31 @@
+import { useState } from "react";
 import type { JournalEntry } from "../App";
+import config from "../config";
 
 interface JournalListProp {
   journalData: JournalEntry[];
 }
 
 export default function JournalList({ journalData }: JournalListProp) {
-  console.log(journalData);
-
+  const [analyzing, setAnalyzing] = useState("");
   if (journalData.length === 0) {
     return <p className="mt-4">No journal entries yet.</p>;
   }
-
+  const analyzeJournal = async (journalId: string, text: string) => {
+    setAnalyzing(journalId)
+    const data = await fetch(
+      `${config.API_URL}/api/journal/anaylze/${journalId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text }),
+      },
+    );
+    setAnalyzing("")
+    console.log(data);
+  };
   return (
     <div className="mt-6 space-y-4">
       {journalData.map((entry) => (
@@ -22,7 +37,15 @@ export default function JournalList({ journalData }: JournalListProp) {
             <span>Ambience: {entry.ambience}</span>
             <span>{new Date(entry.createdAt).toLocaleString()}</span>
           </div>
-          <p className="text-gray-800">{entry.text}</p>
+          <div className="flex justify-between">
+            <p className="text-gray-800">{entry.text}</p>
+            <button
+              className="mx-4 bg-accent border px-3 rounded-md"
+              onClick={() => analyzeJournal(entry.id, entry.text)}
+            >
+              {analyzing == entry.id ? "Analyzing.." : "Analyze"}
+            </button>
+          </div>
         </div>
       ))}
     </div>
