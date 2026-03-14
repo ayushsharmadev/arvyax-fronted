@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# AI-Assisted Journal - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React app for writing journal entries and tracking your mental health journey.
 
-Currently, two official plugins are available:
+## What It Does
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Write journal entries with nature ambience (forest, ocean, mountain)
+- Get AI-powered emotion analysis for your entries
+- See your mental health insights and patterns
+- Clean, simple interface that's easy to use
 
-## React Compiler
+## Quick Start
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
 
-## Expanding the ESLint configuration
+2. **Set up environment**
+   Create `.env` file:
+   ```env
+   VITE_API_URL=http://localhost:3000
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. **Run the app**
+   ```bash
+   pnpm dev
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+4. **Open browser**
+   Go to `http://localhost:5173`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## How to Use
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. **Write Entry**: Pick an ambience, write how you feel, save it
+2. **Analyze**: Click "Analyze" on any entry to see emotions
+3. **View Insights**: Check your mental health patterns at the top
+
+## Tech Stuff
+
+- React 19 + TypeScript
+- Tailwind CSS for styling
+- Vite for fast development
+- Talks to backend API for all the heavy lifting
+
+## Project Files
+
+```
+src/
+├── components/
+│   ├── journal-form.tsx      # Entry creation
+│   ├── journal-list.tsx      # Show all entries
+│   └── journal-insights.tsx  # Mental health stats
+├── App.tsx                   # Main app
+└── main.tsx                  # Entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Need Help?
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Make sure backend is running first
+- Check the API URL in your `.env` file
+- Refresh if something seems stuck
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+That's it! Simple and focused on helping you track your mental wellness.

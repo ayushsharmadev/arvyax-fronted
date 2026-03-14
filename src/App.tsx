@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import JournalForm from "./components/journal-form";
-import config from "./config";
 import JournalList from "./components/journal-list";
 import Insights from "./components/journal-insights";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export interface JournalEntry {
   id: string;
@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch(`${config.API_URL}/api/journal/${userId}`);
+      const res = await fetch(`${API_URL}/api/journal/${userId}`);
       const data = await res.json();
       setEntries(data);
     };

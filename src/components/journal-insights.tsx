@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+const API_URL = import.meta.env.VITE_API_URL
 
 type InsightsData = {
   totalEntries: number;
@@ -10,7 +11,7 @@ function Insights({ userId }: { userId: string }) {
   const [data, setData] = useState<InsightsData | null>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/journal/insights/${userId}`)
+    fetch(`${API_URL}/api/journal/insights/${userId}`)
       .then((res) => res.json())
       .then(setData)
       .catch(console.error);

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { JournalEntry } from "../App";
-import config from "../config";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 interface JournalListProp {
   journalData: JournalEntry[];
@@ -14,7 +15,7 @@ export default function JournalList({ journalData }: JournalListProp) {
   const analyzeJournal = async (journalId: string, text: string) => {
     setAnalyzing(journalId)
     const data = await fetch(
-      `${config.API_URL}/api/journal/anaylze/${journalId}`,
+      `${API_URL}/api/journal/anaylze/${journalId}`,
       {
         method: "POST",
         headers: {
@@ -24,7 +25,6 @@ export default function JournalList({ journalData }: JournalListProp) {
       },
     );
     setAnalyzing("")
-    console.log(data);
   };
   return (
     <div className="mt-6 space-y-4">

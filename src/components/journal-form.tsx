@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { JournalEntry } from "../App";
-import config from "../config";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 type JournalFormProp = {
   onEntryCreated: (entry:JournalEntry) => void;
@@ -21,7 +22,7 @@ export default function JournalForm({
     try {
       setLoading(true);
 
-      const res = await fetch(`${config.API_URL}/api/journal`, {
+      const res = await fetch(`${API_URL}/api/journal`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,9 +34,7 @@ export default function JournalForm({
         }),
       });
 
-      console.log("res ",res)
       const data = await res.json();
-      console.log("data",data)
       setText("");
 
       if (onEntryCreated) {
